@@ -68,7 +68,7 @@ io.sockets.on('connection', function (socket){
         }
         //Si hay alguien mas en la sala
         
-        else{
+        else if (usuarios.length > 1){
             //si se unen mas personas seran concursantes
             socket.join('adivinador');
             console.log(usuarios);
