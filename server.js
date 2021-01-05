@@ -1,14 +1,14 @@
 //Variables que necesitaremos
 
-var http = require('http');
-const express = require('express');
-var socket_io = require('socket.io');
+
+var express = require('express');
+
 
 var app = express();
 app.use(express.static('public'));
 
-var server = http.Server(app);
-var io = socket_io(server);
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
 
 //Aqui guardaremos los usuarios
 var usuarios = [];
@@ -39,7 +39,7 @@ var numpalabra;
 
 
 //Funcion para conectarse al socket
-io.on('connection', function (socket){
+io.sockets.on('connection', function (socket){
 
     io.emit('listausuarios', usuarios);
 
@@ -57,7 +57,7 @@ io.on('connection', function (socket){
 
         //Creamos la condicion para el primer dibujante (primero en unirse)
         if (usuarios.length == 1 || typeof io.sockets.adapter.rooms['dibujante'] === 'undefined'){
-
+            console.log(usuarios);
             socket.join('dibujante');
             //convertimos al usuario en dibujante
             io.in(socket.username).emit('dibujante', socket.username);
@@ -72,7 +72,7 @@ io.on('connection', function (socket){
         else{
             //si se unen mas personas seran concursantes
             socket.join('adivinador');
-
+            console.log(usuarios);
             // Enviamos el evento para convertir en adivinador a este usuario
             io.in(socket.username).emit('adivinador', socket.username);
             console.log(socket.username + 'es un adivinador');
