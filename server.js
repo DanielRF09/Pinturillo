@@ -64,7 +64,7 @@ io.sockets.on('connection', function (socket){
 
             //Enviamos una palabra al azar al dibujante
             io.in(socket.username).emit('dibujar palabra', nuevaPalabra());
-
+            io.emit('listausuarios', usuarios);
         }
         //Si hay alguien mas en la sala
         
@@ -75,7 +75,7 @@ io.sockets.on('connection', function (socket){
             // Enviamos el evento para convertir en adivinador a este usuario
             io.in(socket.username).emit('adivinador', socket.username);
             console.log(socket.username + 'es un adivinador');
-
+            io.emit('listausuarios', usuarios);
         }
 
         io.emit('listausuarios', usuarios);

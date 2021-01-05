@@ -2,7 +2,7 @@
   "name": "pinturillo",
   "version": "1.0.0",
   "description": "Juego",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "start": "node server.js"
   },
