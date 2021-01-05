@@ -1,4 +1,4 @@
-var socket = io();
+const socket = io('https://pinturillo-dist.herokuapp.com/');
 var usuario;
 
 //Funcion para preguntar el username
