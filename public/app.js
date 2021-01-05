@@ -1,5 +1,5 @@
 const socket = io();
-var usuario;
+var user;
 
 //Funcion para preguntar el username
 function preguntarUsername(){
@@ -8,22 +8,22 @@ function preguntarUsername(){
     $('.usuario').fadeIn(500);
     $('.usuario').submit(function(){
         event.preventDefault();
-        usuario = $('#username').val().trim();
+        user = $('#username').val().trim();
 
         //Si el usuario esta vacio
-        if (usuario == '') {
+        if (user == '') {
             return false
         };
 
-        var index = usuarios.indexOf(usuario);
+        var index = users.indexOf(user);
 
         if (index > -1) {
-            alert(usuario + ' ya existe');
+            alert(user + ' ya existe');
             return false
         };
         
         //Unimos al usuario
-        socket.emit('join', usuario);
+        socket.emit('join', user);
         $('.grey-out').fadeOut(300);
         $('.usuario').fadeOut(300);
         $('input.adivinar-input').focus();
@@ -64,8 +64,8 @@ var adivinador = function(){
             return false
         };
 
-        console.log(usuario + " dijo que es: " + adivinar);
-        socket.emit('adivinarpalabra', {username: usuario, adivinarpalabra: adivinar});
+        console.log(user + " dijo que es: " + adivinar);
+        socket.emit('adivinarpalabra', {username: user, adivinarpalabra: adivinar});
         $('.adivinar-input').val('');
     });
 
@@ -78,7 +78,7 @@ var adivinarpalabra = function(data){
     if (click == true && data.adivinarpalabra == $('span.word').text() ) {
         console.log('adivinador: ' + data.username + ' draw-word: ' + $('span.word').text());
         socket.emit('respuesta correcta', {username: data.username, adivinarpalabra: data.adivinarpalabra});
-        socket.emit('swap rooms', {from: usuario, to: data.username});
+        socket.emit('swap rooms', {from: user, to: data.username});
         click = false;
     }
 
@@ -91,11 +91,11 @@ var dibujarPalabra = function(word){
 
 };
 
-var usuarios = [];
+var users = [];
 
 var listausuarios = function(names){
 
-    usuarios = names;
+    users = names;
 
     //Insertamos codigo html
     var html = '<p class="chatbox-header">' + 'Jugadores' + '</p>';
@@ -111,7 +111,7 @@ var listausuarios = function(names){
 //Creamos un nuevo dibujante
 var nuevoDibujante = function(){
     
-    socket.emit('nuevo dibujante', usuario);
+    socket.emit('nuevo dibujante', user);
     limpiarPantalla();
     $('#adivinadores').empty();
 
@@ -160,7 +160,7 @@ var pictionary = function(){
         console.log(obj.color);
 
         if (obj.color === '0') {
-            socket.emit('limpiar pantalla', usuario);
+            socket.emit('limpiar pantalla', user);
             //El color por defecto sera el blanco
             context.fillStyle = 'white';
             return;
@@ -173,7 +173,7 @@ var pictionary = function(){
         //Si dan doble click intercambiamos los roles
         if (click == true) {
             var target = $(this).text();
-            socket.emit('swap rooms', {from: usuario, to: target});
+            socket.emit('swap rooms', {from: user, to: target});
         };
     });
 

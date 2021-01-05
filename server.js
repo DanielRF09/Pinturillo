@@ -1,16 +1,16 @@
 //Variables que necesitaremos
-
-
+var http = require('http');
 var express = require('express');
+var socket_io = require('socket.io');
+
 var app = express();
 app.use(express.static('public'));
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
 
-server.listen(process.env.PORT || 8080);
+var server = http.Server(app);
+var io = socket_io(server);
 
 //Aqui guardaremos los usuarios
-var usuarios = [];
+var users = [];
 
 //Guardamos las palabras que apareceran en el juego
 var palabras = ["disfraz", "chatarra", "demoler", "instrucciones",
@@ -38,9 +38,9 @@ var numpalabra;
 
 
 //Funcion para conectarse al socket
-io.sockets.on('connection', function (socket){
+io.on('connection', function (socket){
 
-    io.emit('listausuarios', usuarios);
+    io.emit('listausuarios', users);
 
     //Funcion para unirse a la sala
     socket.on('join', function (name){
@@ -52,11 +52,11 @@ io.sockets.on('connection', function (socket){
         console.log(socket.username + " se unio a la partida. Id: " + socket.id);
 
         //Guardamos el nombre del usuario en el array usuarios
-        usuarios.push(socket.username);
+        users.push(socket.username);
 
         //Creamos la condicion para el primer dibujante (primero en unirse)
-        if (usuarios.length === 1 || typeof io.sockets.adapter.rooms['dibujante'] === 'undefined'){
-            console.log(usuarios);
+        if (users.length == 1 || typeof io.sockets.adapter.rooms['dibujante'] === 'undefined'){
+            console.log(users);
             socket.join('dibujante');
             //convertimos al usuario en dibujante
             io.in(socket.username).emit('dibujante', socket.username);
@@ -64,21 +64,21 @@ io.sockets.on('connection', function (socket){
 
             //Enviamos una palabra al azar al dibujante
             io.in(socket.username).emit('dibujar palabra', nuevaPalabra());
-            io.emit('listausuarios', usuarios);
+            //io.emit('listausuarios', users);
         }
         //Si hay alguien mas en la sala
         
-        else if (usuarios.length > 1){
+        else {
             //si se unen mas personas seran concursantes
             socket.join('adivinador');
-            console.log(usuarios);
+            console.log(users);
             // Enviamos el evento para convertir en adivinador a este usuario
             io.in(socket.username).emit('adivinador', socket.username);
             console.log(socket.username + 'es un adivinador');
-            io.emit('listausuarios', usuarios);
+            //io.emit('listausuarios', users);
         }
 
-        io.emit('listausuarios', usuarios);
+        io.emit('listausuarios', users);
 
     });
 
@@ -101,27 +101,27 @@ io.sockets.on('connection', function (socket){
     //Realizamos la funcion para cuando se desconecte el usuario
     socket.on('disconnect', function(){
 
-        for(var i = 0; i < usuarios.length; i++){
+        for(var i = 0; i < users.length; i++){
 
             //Eliminamos al usuario de la lista
-            if(usuarios[i] == socket.username){
-                usuarios.splice(i, 1);
+            if(users[i] == socket.username){
+                users.splice(i, 1);
             };
         };
         console.log(socket.username + ' se ha desconectado');
 
         //Actualizamos la lista de usarios
-        io.emit('listausuarios', usuarios);
+        io.emit('listausuarios', users);
 
         //Si el dibujante no tiene conexion o no existe
         if( typeof io.sockets.adapter.rooms['dibujante'] === "undefined"){
 
             //Generamos un numero al azar para escoger el nuevo dibujante
-            var x = Math.floor(Math.random() * (usuarios.length));
-            console.log(usuarios[x]);
+            var x = Math.floor(Math.random() * (users.length));
+            console.log(users[x]);
 
             //Asignamos a un nuevo dibujante
-            io.in(usuarios[x]).emit('nuevo dibujante', usuarios[x]);
+            io.in(users[x]).emit('nuevo dibujante', users[x]);
 
         };
 
@@ -165,7 +165,7 @@ io.sockets.on('connection', function (socket){
     socket.on('respuesta correcta', function(data){
 
         io.emit('respuesta correcta', data);
-        console.log(data.username + 'adivino la palabra ' + data.adivinar);
+        console.log(data.username + ' adivino la palabra ' + data.adivinar);
 
     });
 
@@ -182,3 +182,6 @@ io.sockets.on('connection', function (socket){
 //Servidorrr
 
 //server.maxConnections = 6;
+server.listen(process.env.PORT || 8080, function() {
+	console.log('Server started at http://localhost:8080');
+});
