@@ -55,7 +55,7 @@ io.sockets.on('connection', function (socket){
         usuarios.push(socket.username);
 
         //Creamos la condicion para el primer dibujante (primero en unirse)
-        if (usuarios.length == 1 || typeof io.sockets.adapter.rooms['dibujante'] === 'undefined'){
+        if (usuarios.length === 1 || typeof io.sockets.adapter.rooms['dibujante'] === 'undefined'){
             console.log(usuarios);
             socket.join('dibujante');
             //convertimos al usuario en dibujante
