@@ -181,7 +181,7 @@ io.on('connection', function (socket){
 
 //Servidorrr
 
-//server.maxConnections = 6;
+server.maxConnections = 6;
 server.listen(process.env.PORT || 8080, function() {
 	console.log('Server started at http://localhost:8080');
 });
