@@ -1,7 +1,7 @@
 //Variables que necesitaremos
 
 var http = require('http');
-var express = require('express');
+const express = require('express');
 var socket_io = require('socket.io');
 
 var app = express();
@@ -183,7 +183,7 @@ io.on('connection', function (socket){
 //Servidorrr
 
 //server.maxConnections = 6;
-server.listen(process.env.PORT || 8080, function(){
+server.listen(process.env.PORT || 8080, () => {
 
     console.log('Servidor escuchando en el puerto 8080');
 

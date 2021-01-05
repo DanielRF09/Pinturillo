@@ -1,4 +1,4 @@
-var socket = io.connect();
+var socket = io.connect('http://localhost:8080');
 var usuario;
 
 //Funcion para preguntar el username
