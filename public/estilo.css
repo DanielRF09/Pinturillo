@@ -111,7 +111,7 @@ h1 {
     display: block;
     margin-left: 45.5%;
     margin-top: -0.8%;
-    width: 382px; 
+    width: 378px; 
     height: 55px;
 
 }
@@ -270,3 +270,8 @@ canvas {
     
 }
 
+
+.integrantes{
+    background-color: #17172e;
+    color:rgb(243, 243, 243);
+}
