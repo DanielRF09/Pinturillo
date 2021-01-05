@@ -2,13 +2,12 @@
 
 
 var express = require('express');
-
-
 var app = express();
 app.use(express.static('public'));
-
 var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
+var io = require('socket.io')(server);
+
+server.listen(process.env.PORT || 8080);
 
 //Aqui guardaremos los usuarios
 var usuarios = [];
@@ -183,8 +182,3 @@ io.sockets.on('connection', function (socket){
 //Servidorrr
 
 //server.maxConnections = 6;
-server.listen(process.env.PORT || 8080, () => {
-
-    console.log('Servidor escuchando en el puerto 8080');
-
-});
