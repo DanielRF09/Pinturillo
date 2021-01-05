@@ -1,0 +1,272 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    
+    background-color: #2f3033;
+    font-size: 1.5em;
+    margin: 0px;
+    min-width: 1000px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.row {
+    height: 525px;
+    width: 100%; 
+    position: relative;
+    text-align: center;
+}
+
+.usuarios, canvas, #adivinar, .dibujar {
+    border: 0.05px solid #2f3033;
+}
+
+.usuarios {
+    display: inline-block;
+    background-color: white;
+    width: 25%;
+    height: 540px;
+    margin-top: -2.5%;
+    margin-left: 5%;
+    padding: 10px;
+    vertical-align: top;
+}
+
+ul {
+    list-style-type: none;
+    text-align: left;
+    font-size: 15px;
+    padding: 3px;
+    margin: 0 0;
+    height: 205px;
+
+}
+
+ul>p {
+    font-weight: bold;
+    color:#3a3a3a;
+    margin: 10px 0;
+}
+
+ul>li {
+    width: 40%;
+    display: inline-block;
+    /*left-margin: -15px;*/
+    margin-left: 5px;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+    color:#3a3a3a;
+    list-style: none;
+}
+
+#adivinadores>p {
+    font-family: 'Quicksand', sans-serif;
+    color: rgb(245, 98, 0);
+    margin: 1px 0;
+    padding: 2px;
+}
+
+#adivinadores {
+    text-align: center;
+    list-style: none;
+    margin-bottom: 1px;
+    color: #3a3a3a;
+    overflow-y: scroll;
+}
+
+#adivinadores {
+    font-style: italic;
+    font-size: 16px;
+    height: 226px;
+}
+
+.draw-buttons {
+    height: 35px;
+    background-color: #f4ff60;
+    width: 44.53%;
+    margin-left: 12.5%;
+}
+
+button {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border-radius: 1px;
+}
+
+h1 {
+    background-color:#2f3033;
+    color:rgb(227, 233, 233);
+    font-size: 30px;
+    margin:  0 0 1px 0;
+    margin-bottom: 0.5%;
+    padding: 10px 40px;
+    text-align: center;
+}
+
+#adivinar {
+    background-color: white;
+    border-radius: 5px;
+    display: block;
+    margin-left: 45.5%;
+    margin-top: -0.8%;
+    width: 382px; 
+    height: 55px;
+
+}
+
+.dibujar {
+    margin-left: 12.5%;
+    background-color: #FF0035;
+    color:rgb(227, 233, 233);
+    display: block;
+    border-radius: 2px;
+    width: 44.6%; 
+    height: 55px;
+}
+
+#adivinar {
+    padding: 10px;
+}
+
+#adivinar>.adivinar-input {
+    height: 30px;
+    width: 85%;
+    padding: 3px 5px;
+    font-size: 20px;
+}
+
+.dibujar>p {
+    margin: 15px;
+}
+
+span.word {
+	font-weight: bolder;
+	color:rgb(227, 233, 233);
+}
+
+.hidden {
+    display: none;
+}
+
+#top-message {
+    height: 70px;
+    width: 255px;
+    padding: 5px 0px;
+    margin-left: 55%;
+}
+
+canvas {
+    width: 44.6%;
+    height: 500px;
+    background-color: white;
+    display: inline-block;
+    margin-right: 10px auto;
+    cursor: pointer;
+}
+
+.black {
+    background-color: #000000;
+}
+
+.gray {
+    background-color: #7c7c7c;
+}
+
+.brown {
+    background-color: #70441b;
+}
+
+
+.blue {
+    background-color: #0000EE;
+}
+
+.lightblue {
+    background-color: #7692FF;
+}
+
+
+.green {
+    background-color: #66CD00;
+}
+
+.lightgreen {
+    background-color: #1EFF15;
+}
+
+.red {
+    background-color: #FF0000;
+}
+
+.orange {
+    background-color: #ff720d;
+}
+
+.yellow {
+    background-color: #FFFF00;
+}
+
+.purple {
+    background-color: #C163F7;
+}
+
+.pink {
+    background-color: #F88DAD;
+}
+
+.clear, .white {
+    background-color: white;
+}
+
+.clear{
+    background:rgba(59, 59, 58, 0);
+    
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+}
+
+.grey-out {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #4A4A4A;
+    opacity: .8;
+    display: none;
+    z-index: 900;
+}
+
+.usuario {
+    position: relative;
+    background-color: white;
+    max-height: 300px;
+    max-width: 300px;
+    text-align: center;
+    padding: 25px 5px;
+    top: 20%;
+    margin: auto;
+    border-radius: 6px;
+}
+
+#username {
+    color:#4A4A4A;
+    width: 90%;
+    font-size: 25px;
+    padding: 5px;
+    margin: 10px;
+}
+
+#submitname {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    width: 150px;
+    height: 45px;
+    background-color: #f72206;
+    color:rgb(243, 243, 243);
+    
+}
+

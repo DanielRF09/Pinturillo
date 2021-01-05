@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <script src="//code.jquery.com/jquery-2.1.0.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+    <title>Pinturillo</title>
+
+
+    
+    <div class="grey-out hidden">
+        <form class="usuario">
+            <label for="username">Nombre de Usuario </label>
+            <input id="username" type="text" placeholder="Username" maxlength="14" autofocus>
+            <button type="submit" id="submitname">Jugar</button>
+        </form>
+    </div>
+
+    <div id="main">
+        <h1>Pinturillo</h1>
+            <div class="row">
+                <div class="dibujar hidden" >
+                    <p><span class="word"></span></p>
+                </div>
+                <div class="draw-buttons">
+                    
+                    <button value="#000000" class="black" type="button"></button>
+                    <button value="#7c7c7c" class="gray" type="button"></button>
+                    <button value="#70441b" class="brown" type="button"></button>
+                    <button value="#0000EE" class="blue" type="button"></button>
+                    <button value="#7692FF" class="lightblue" type="button"></button>
+                    <button value="#66CD00" class="green" type="button"></button>
+                    <button value="#1EFF15" class="lightgreen" type="button"></button>
+                    <button value="#FF0000" class="red" type="button"></button>
+                    <button value="#ff720d" class="orange" type="button"></button>
+                    <button value="#FFFF00" class="yellow" type="button"></button>
+                    <button value="#C163F7" class="purple" type="button"></button>
+                    <button value="#F88DAD" class="pink" type="button"></button>
+                    <button value="white" class="white" type="button"></button>
+                    <button value="0" class="clear" type="button">X</button>
+    
+                </div>
+                <canvas id="canvas"></canvas>
+
+                <div class="usuarios">
+                    <ul></ul>
+
+                    <h6>Mensajes</h6>
+                    <div id="adivinadores">
+                        
+                        <ul class="nose">
+                            <li>
+                            
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        <div id="top-message">
+            
+            <form id="adivinar" class="hidden" >
+                <input type="text" name="adivinar" class="adivinar-input"  placeholder="Introduce tu Palabra">
+            </form> 
+        </div>
+    </div>
+

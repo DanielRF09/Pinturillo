@@ -1,0 +1,16 @@
+{
+  "name": "pinturillo",
+  "version": "1.0.0",
+  "description": "Juego",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Rodriguez Flores Daniel 5IV8",
+  "license": "ISC",
+  
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.0.4"
+  }
+}
