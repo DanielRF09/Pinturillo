@@ -1,4 +1,4 @@
-var socket = io.connect('http://pinturillo-nodejs.herokuapp.com/');
+var socket = io.connect();
 var usuario;
 
 //Funcion para preguntar el username
